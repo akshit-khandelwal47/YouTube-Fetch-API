@@ -1,3 +1,23 @@
 from django.shortcuts import render
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import *
+from .serializers import *
+from rest_framework import generics
+from rest_framework.pagination import CursorPagination
 
-# Create your views here.
+
+class PaginationRes(CursorPagination):
+    page_size = 25
+    page_size_query_param = page_size
+    max_page_size = 120
+
+class YouTubeVid(generics.ListAPIView):
+    
+    search = ['video_title','description']
+    filter_backends = (filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter)
+    filterset_field = ['channel_id','channel_title']
+    ordering = ('-publishedDateTime')
+    queryset = VideoData.objects.all()
+    serializer_class = VideoDataSerializers
+    pagination_class = PaginationRes
