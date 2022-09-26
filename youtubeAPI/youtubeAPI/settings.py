@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_crontab',
-    'django_cron'
+    'django_cron',
+    'YTdata'
 ]
 
 MIDDLEWARE = [

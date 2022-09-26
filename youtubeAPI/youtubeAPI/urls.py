@@ -19,5 +19,5 @@ from YTdata import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', views.)
+    path('', views.YouTubeVid.as_view())
 ]

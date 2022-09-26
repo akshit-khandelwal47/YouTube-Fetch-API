@@ -17,7 +17,7 @@ class YouTubeVid(generics.ListAPIView):
     search = ['video_title','description']
     filter_backends = (filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter)
     filterset_field = ['channel_id','channel_title']
-    ordering = ('-publishedDateTime')
+    ordering = ('-published_datetime')
     queryset = VideoData.objects.all()
     serializer_class = VideoDataSerializers
     pagination_class = PaginationRes
