@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+environ.Env.read_env()
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_crontab',
     'django_cron',
-    'YTdata'
+    'YTdata',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -53,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CRON_CLASSES = ["YTdata.cron.callYoutubeApi"]
+CRON_CLASSES = ["YTdata.cron.CallYoutubeApi"]
 
 ROOT_URLCONF = 'youtubeAPI.urls'
 
@@ -129,7 +136,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-GOOGLE_API_KEYS = ['AIzaSyAmYqCK5EG67gqQq1nzU285D5s54tqAc8Q']
+GOOGLE_API_KEYS = ['AIzaSyA_BflqTg7p40wGKo0O-P4bW8zh3lSM6v8','AIzaSyDed2NGHComh2pbxw_QzjJmAD-rWXt7C2A']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -137,3 +144,5 @@ REST_FRAMEWORK = {
     'PAGE_SIZE':10
 
 }
+
+#'AIzaSyAmYqCK5EG67gqQq1nzU285D5s54tqAc8Q'
