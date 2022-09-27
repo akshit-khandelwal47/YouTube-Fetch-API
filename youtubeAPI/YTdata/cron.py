@@ -3,7 +3,7 @@ import os
 from django_cron import CronJobBase, Schedule
 
 # Google API
-from googleapiclient.discovery import build
+from apiclient import build
 import apiclient
 
 from .models import *
@@ -49,19 +49,19 @@ class CallYoutubeApi(CronJobBase):
 
             for item in res['items']:
                 video_id = item['id']['videoId']
-                publishedDateTime = item['snippet']['publishedAt']
-                title = item['snippet']['title']
+                published_datetime = item['snippet']['publishedAt']
+                video_title = item['snippet']['videoTitle']
                 description = item['snippet']['description']
-                thumbnailsUrls = item['snippet']['thumbnails']['default']['url']
+                thumbnail_urls = item['snippet']['thumbnail']['default']['url']
                 channel_id = item['snippet']['channelId']
                 channel_title = item['snippet']['channelTitle']
-                print(title)
+                print(video_title)
                 VideoData.objects.create(
                     video_id=video_id,
-                    title=title,
+                    video_title=video_title,
                     description=description,
                     channel_id=channel_id,
                     channel_title=channel_title,
-                    publishedDateTime=publishedDateTime,
-                    thumbnailsUrls=thumbnailsUrls,
+                    published_date_time=published_datetime,
+                    thumbnail_urls=thumbnail_urls,
                 )

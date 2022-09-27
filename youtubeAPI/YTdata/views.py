@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import *
-from .serializers import *
+from YTdata.models import *
+from YTdata.serializers import *
 from rest_framework import generics
 from rest_framework.pagination import CursorPagination
 
@@ -14,7 +14,7 @@ class PaginationRes(CursorPagination):
 
 class YouTubeVid(generics.ListAPIView):
     
-    search = ['video_title','description']
+    search_field = ['video_title','description']
     filter_backends = (filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter)
     filterset_field = ['channel_id','channel_title']
     ordering = ('-published_datetime')
