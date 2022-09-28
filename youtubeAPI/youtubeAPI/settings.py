@@ -60,14 +60,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CRON_CLASSES = ["YTdata.cron.CallYoutubeApi"]
+CRON_CLASSES = ["YTdata.cron.CallYoutubeApi"] #
 
 ROOT_URLCONF = 'youtubeAPI.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,7 +136,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-GOOGLE_API_KEYS = ['AIzaSyA_BflqTg7p40wGKo0O-P4bW8zh3lSM6v8','AIzaSyDed2NGHComh2pbxw_QzjJmAD-rWXt7C2A']
+GOOGLE_API_KEYS = ['AIzaSyAmYqCK5EG67gqQq1nzU285D5s54tqAc8Q']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
