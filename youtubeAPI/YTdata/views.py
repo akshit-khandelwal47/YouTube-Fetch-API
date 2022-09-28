@@ -1,29 +1,29 @@
 from django.shortcuts import render
-from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend
-from YTdata.models import *
-from YTdata.serializers import *
-from rest_framework import generics
-from rest_framework.pagination import CursorPagination
+from urllib import request, response
+from googleapiclient.discovery import build
 from django.http import HttpResponse
+def home(request):
+   
+    try:
+        print(request.META.get('HTTP_REFERER'))
 
+        api_key = 'AIzaSyAmYqCK5EG67gqQq1nzU285D5s54tqAc8Q'
 
-class PaginationRes(CursorPagination):
-    page_size = 25 #fetch results upto 25 pages
-    page_size_query_param = page_size
-    max_page_size = 120
+        youtube = build('youtube','v3', developerKey=api_key)
 
-class YouTubeVid(generics.ListAPIView):
-    
-    search_field = ['title','description']
-    filter_backends = (filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter)
-    filterset_field = ['channel_id','channel_title']
-    ordering = ('-publishedDateTime')
-    queryset = VideoData.objects.all()
-    serializer_class = VideoDataSerializers
-    pagination_class = PaginationRes
+        req = youtube.channels().list(
+        part = ['snippet','contentDetails','statistics','id'],
+        forUsername = 'GoogleDevelopers'
 
+        )
 
+        response = req.execute()
+        print(response)
+        context = {"response" : response}
+        return render(request,'index.html',context)
+
+    except:
+        return HttpResponse('Wrong Url')
 
     
 
