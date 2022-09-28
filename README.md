@@ -12,9 +12,9 @@
 5.  In settings.py add CRON_CLASS by referring [here](https://django-cron.readthedocs.io/en/latest/installation.html)
 6.  To run the server ```python manage.py runserver```
 
-##API Version
+## API Version
 The api for fetching youtube data through api is in the main branch.
 
-##Alternative
+## Alternative
 I have added a functionality of static webpage for getting response in the alternative-static branch.
 
