@@ -16,5 +16,14 @@
 The api for fetching youtube data through api is in the main branch.
 
 ## Alternative
-I have added a functionality of static webpage for getting response in the alternative-static branch.
+To get the static response on a web page run the project of alternative-static branch.
 
+1. In the terminal run ```git checkout alternative-static```
+2. ```git pull```
+3. Then run ```python manage.py runserver```
+
+## Postman
+
+In Postman use the youtube api endpoint and in the query params, pass the api key, pass a param part with values snippet, contentDetails, statistics, id and pass forUsername pass a channel name e.g. GoogleDevelopers.
+
+Look in the body of response section, you will see the results.
